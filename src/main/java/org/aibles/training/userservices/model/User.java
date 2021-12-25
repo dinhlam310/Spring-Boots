@@ -1,19 +1,18 @@
 package org.aibles.training.userservices.model;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
 
-    public User() {
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +27,9 @@ public class User implements Serializable {
     @Min(value = 1, message = "Age should not be less than 0")
     @Column(name = "age")
     private int age;
+
+    public User() {
+    }
 
     public User (int id, String name, int age){
         this.id = id;
